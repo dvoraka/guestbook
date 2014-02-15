@@ -21,12 +21,37 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
-
-    <!--
-    The index controller.
-    -->
-    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
+    
+    <!-- JDBC Data Source. -->
+    <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+        <property name="url" value="jdbc:derby://localhost:1527/sample"/>
+        <property name="username" value="app"/>
+        <property name="password" value="app"/>
+        <property name="validationQuery" value="SELECT 1"/>
+    </bean>
+  
+    <!-- Hibernate Session Factory -->
+    <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="packagesToScan">
+            <array>
+                <value>local.company.guestbook</value>
+            </array>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.DerbyDialect
+            </value>
+        </property>
+    </bean>
+  
+    <!-- Hibernate Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="mySessionFactory"/>
+    </bean>
+  
+    <!-- Activates annotation based transaction management -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
