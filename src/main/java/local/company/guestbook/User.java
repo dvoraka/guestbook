@@ -7,16 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author user
- */
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -29,11 +25,11 @@ public class User implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getUsername() {
         return username;
     }
-    
+
     public void setUsername(String name) {
         this.username = name;
     }
@@ -62,5 +58,4 @@ public class User implements Serializable {
     public String toString() {
         return "local.company.guestbook.User[ id=" + id + " ]";
     }
-    
 }
