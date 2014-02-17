@@ -10,5 +10,6 @@
 
     <body>
         <p>Guestbook</p>
+        <p>Users: ${counter}</p>
     </body>
 </html>

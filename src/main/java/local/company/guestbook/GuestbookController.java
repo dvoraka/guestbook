@@ -1,6 +1,8 @@
 package local.company.guestbook;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class GuestbookController {
     
+    @Autowired private SimpleUserDAO userDAO;
+    
     @RequestMapping(method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
+        
+        long count = userDAO.count();
+        model.addAttribute("counter", count);
         
         return "index";
     }
