@@ -14,10 +14,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
 
     public Long getId() {
         return id;
@@ -25,6 +28,14 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     @Override
