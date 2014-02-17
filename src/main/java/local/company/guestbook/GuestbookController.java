@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class GuestbookController {
     
-    @Autowired private SimpleUserDAO userDAO;
+    @Autowired
+    private SimpleUserService userService;
     
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
         
-        long count = userDAO.count();
+        long count = userService.count();
         model.addAttribute("counter", count);
         
         return "index";

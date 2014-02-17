@@ -17,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class SimpleUserDAO {
     
-    @Autowired private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
     
     @Transactional
     public long count() {
