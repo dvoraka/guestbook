@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SimpleUserService {
 
     @Autowired
-    private SimpleUserDAO userDAO;
+    private UserDAO userDAO;
 
     public long count() {
 

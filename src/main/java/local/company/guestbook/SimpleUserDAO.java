@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class SimpleUserDAO {
+public class SimpleUserDAO implements UserDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Transactional
+    @Override
     public long count() {
 
         Session session = sessionFactory.getCurrentSession();
