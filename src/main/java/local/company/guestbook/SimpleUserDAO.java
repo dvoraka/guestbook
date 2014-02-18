@@ -23,4 +23,14 @@ public class SimpleUserDAO implements UserDAO {
 
         return counts.get(0);
     }
+    
+    @Transactional
+    @Override
+    public List<User> getUsers() {
+        
+        Session session = sessionFactory.getCurrentSession();
+        List<User> users = session.createQuery("FROM User").list();
+        
+        return users;
+    }
 }

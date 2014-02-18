@@ -1,5 +1,6 @@
 package local.company.guestbook;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ public class GuestbookController {
 
         long count = userService.count();
         model.addAttribute("counter", count);
+        
+        List<User> users = userService.getUsers();
+        model.addAttribute("users", users);
 
         return "index";
     }
