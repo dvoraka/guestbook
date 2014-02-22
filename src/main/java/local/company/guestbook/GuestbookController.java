@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/")
 public class GuestbookController {
 
     @Autowired
     private SimpleUserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
 
         long count = userService.count();
@@ -24,5 +23,11 @@ public class GuestbookController {
         model.addAttribute("users", users);
 
         return "index";
+    }
+    
+    @RequestMapping(value = "/add-rand-user/", method = RequestMethod.GET)
+    public String addRandUser(Model model) {
+        
+        return "redirect:/";
     }
 }
