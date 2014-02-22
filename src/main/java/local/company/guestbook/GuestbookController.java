@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GuestbookController {
 
     @Autowired
-    private SimpleUserService userService;
+    private UserService userService;
 
     /**
      * Prepares index page.
@@ -44,6 +44,8 @@ public class GuestbookController {
      */
     @RequestMapping(value = "/add-rand-user/", method = RequestMethod.GET)
     public String addRandUser(Model model) {
+
+        userService.addRandomUser();
 
         return "redirect:/";
     }

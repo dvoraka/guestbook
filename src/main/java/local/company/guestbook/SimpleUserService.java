@@ -7,20 +7,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class SimpleUserService {
+public class SimpleUserService implements UserService {
 
     @Autowired
     private UserDAO userDAO;
 
+    @Override
     public long count() {
 
         return userDAO.count();
 
     }
-    
+
+    @Override
     public List<User> getUsers() {
-        
+
         return userDAO.getUsers();
-        
+
+    }
+
+    @Override
+    public void addRandomUser() {
+
+        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 }
