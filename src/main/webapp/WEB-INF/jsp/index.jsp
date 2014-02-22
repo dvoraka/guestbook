@@ -18,5 +18,6 @@
             </c:forEach>
         </ul>
         <p>Users: ${counter}</p>
+        <p><a href="add-rand-user/">Generate new user</a></p>
     </body>
 </html>
