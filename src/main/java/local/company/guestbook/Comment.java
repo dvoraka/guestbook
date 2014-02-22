@@ -1,11 +1,14 @@
 package local.company.guestbook;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "COMMENTS")
@@ -18,6 +21,8 @@ public class Comment implements Serializable {
     private Long id;
     
     private String text;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public Long getId() {
         return id;
@@ -33,6 +38,14 @@ public class Comment implements Serializable {
     
     public void setText(String text) {
         this.text = text;
+    }
+    
+    public Date getCreated() {
+        return created;
+    }
+    
+    public void setCreated(Date date) {
+        this.created = date;
     }
 
     @Override
