@@ -33,4 +33,14 @@ public class SimpleUserDAO implements UserDAO {
         
         return users;
     }
+
+    @Override
+    public void addUser(String name) {
+        
+        User user = new User();
+        user.setUsername(name);
+        Session session = sessionFactory.getCurrentSession();
+        session.save(user);
+        
+    }
 }
