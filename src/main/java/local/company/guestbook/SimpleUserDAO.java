@@ -23,24 +23,25 @@ public class SimpleUserDAO implements UserDAO {
 
         return counts.get(0);
     }
-    
+
     @Transactional
     @Override
     public List<User> getUsers() {
-        
+
         Session session = sessionFactory.getCurrentSession();
         List<User> users = session.createQuery("FROM User").list();
-        
+
         return users;
     }
 
     @Override
-    public void addUser(String name) {
-        
+    public Long addUser(String name) {
+
         User user = new User();
         user.setUsername(name);
         Session session = sessionFactory.getCurrentSession();
-        session.save(user);
-        
+        Long id = (Long) session.save(user);
+
+        return id;
     }
 }

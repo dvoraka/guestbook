@@ -8,5 +8,5 @@ public interface UserDAO {
 
     List<User> getUsers();
 
-    void addUser(String name);
+    Long addUser(String name);
 }
