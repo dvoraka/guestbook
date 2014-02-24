@@ -38,8 +38,24 @@ public class SimpleUserService implements UserService {
             sb.append(c);
         }
         String randStr = sb.toString();
-        
+
         userDAO.addUser(randStr);
 
+    }
+
+    @Override
+    public User getUser(Long userId) {
+
+        User user = userDAO.get(userId);
+
+        return user;
+    }
+
+    @Override
+    public List<User> getUsersByName(String name) {
+
+        List<User> users = userDAO.getByName(name);
+
+        return users;
     }
 }

@@ -13,6 +13,10 @@ public interface UserService {
 
     List<User> getUsers();
 
+    User getUser(Long userId);
+
+    List<User> getUsersByName(String name);
+
     void addRandomUser();
 
 }
