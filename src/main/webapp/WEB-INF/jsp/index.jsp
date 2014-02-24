@@ -20,5 +20,6 @@
         <p>Users: ${counter}</p>
         <p><a href="${pageContext.request.contextPath}/add-rand-user/">
                 Generate new user</a></p>
+        <p>Found users: ${foundusers}</p>
     </body>
 </html>

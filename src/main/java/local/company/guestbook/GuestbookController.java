@@ -34,6 +34,9 @@ public class GuestbookController {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
 
+        List<User> foundUsers = userService.getUsersByName("mary");
+        model.addAttribute("foundusers", foundUsers);
+
         return "index";
     }
 
