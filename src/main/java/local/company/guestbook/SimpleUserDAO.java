@@ -1,7 +1,7 @@
 package local.company.guestbook;
 
 import java.util.List;
-import javax.persistence.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,7 @@ public class SimpleUserDAO implements UserDAO {
         return users;
     }
 
+    @Transactional
     @Override
     public Long addUser(String name) {
 
@@ -43,5 +44,28 @@ public class SimpleUserDAO implements UserDAO {
         Long id = (Long) session.save(user);
 
         return id;
+    }
+
+    @Transactional
+    @Override
+    public User get(Long id) {
+
+        Session session = sessionFactory.getCurrentSession();
+        User user = (User) session.get(User.class, id);
+
+        return user;
+    }
+
+    @Transactional
+    @Override
+    public List<User> getByName(String name) {
+
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM User U where U.username = :username";
+        Query query = session.createQuery(hql);
+        query.setParameter("username", name);
+        List<User> users = query.list();
+
+        return users;
     }
 }
