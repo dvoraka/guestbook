@@ -14,8 +14,8 @@
         <h1>List of all users</h1>
         <ul>
             <c:forEach var="user" items="${users}">
-                <li>${user.id} - ${user.username}</li>
-            </c:forEach>
+                <li>${user.id} - ${user.username} <a href="${pageContext.request.contextPath}/delete-user/${user.id}">delete</a></li>
+                </c:forEach>
         </ul>
         <p>Users: ${counter}</p>
         <p><a href="${pageContext.request.contextPath}/add-rand-user/">

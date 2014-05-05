@@ -69,4 +69,15 @@ public class SimpleUserDAO implements UserDAO {
 
         return users;
     }
+
+    @Transactional
+    @Override
+    public void deleteUser(long id) {
+
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "DELETE FROM User WHERE id = :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        query.executeUpdate();
+    }
 }

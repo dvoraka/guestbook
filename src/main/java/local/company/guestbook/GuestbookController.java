@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * Class for guestbook controller.
@@ -50,6 +51,14 @@ public class GuestbookController {
     public String addRandUser(Model model) {
 
         userService.addRandomUser();
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/delete-user/{userId}", method = RequestMethod.GET)
+    public String delUser(@PathVariable("userId") long id, Model model) {
+
+        userService.deleteUser(id);
 
         return "redirect:/";
     }

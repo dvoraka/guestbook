@@ -58,4 +58,10 @@ public class SimpleUserService implements UserService {
 
         return users;
     }
+
+    @Override
+    public void deleteUser(long id) {
+
+        userDAO.deleteUser(id);
+    }
 }
