@@ -2,6 +2,7 @@ package local.company.guestbook;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
@@ -12,7 +13,12 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String username;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
 
     public Long getId() {
         return id;
@@ -35,13 +41,13 @@ public class User implements Serializable {
 
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
+
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
 
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof User)) {
 
             return false;
@@ -58,6 +64,15 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "local.company.guestbook.User[ id=" + id + " ]";
+
+        return "User [id=" + id + "]";
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }

@@ -11,15 +11,17 @@
 
     <body>
         <p>Guestbook</p>
+        <p><a href="${pageContext.request.contextPath}/add-rand-user/">
+                Generate new user</a></p>
         <h1>List of all users</h1>
         <ul>
             <c:forEach var="user" items="${users}">
-                <li>${user.id} - ${user.username} <a href="${pageContext.request.contextPath}/delete-user/${user.id}">delete</a></li>
+                <li>${user.id} - ${user.username} (created: ${user.created})
+                    <a href="${pageContext.request.contextPath}/delete-user/${user.id}">delete</a></li>
                 </c:forEach>
         </ul>
         <p>Users: ${counter}</p>
-        <p><a href="${pageContext.request.contextPath}/add-rand-user/">
-                Generate new user</a></p>
+
         <p>Found users: ${foundusers}</p>
     </body>
 </html>

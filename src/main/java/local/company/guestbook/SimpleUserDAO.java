@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -41,6 +42,7 @@ public class SimpleUserDAO implements UserDAO {
 
         User user = new User();
         user.setUsername(name);
+        user.setCreated(new Date());
         Session session = sessionFactory.getCurrentSession();
         Long id = (Long) session.save(user);
 
