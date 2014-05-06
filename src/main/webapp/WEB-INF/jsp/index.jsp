@@ -13,6 +13,12 @@
         <p>Guestbook</p>
         <p><a href="${pageContext.request.contextPath}/add-rand-user/">
                 Generate new user</a></p>
+        <h1>Comments</h1>
+        <ul>
+            <c:forEach var="comment" items="${comments}">
+                ${comment} | ${comment.text}<br>
+            </c:forEach>
+        </ul>
         <h1>List of all users</h1>
         <ul>
             <c:forEach var="user" items="${users}">

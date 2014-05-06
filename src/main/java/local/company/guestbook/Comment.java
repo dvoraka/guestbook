@@ -71,6 +71,6 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
 
-        return "local.company.guestbook.Comment[ id=" + id + " ]";
+        return "Comment [id=" + id + "]";
     }
 }

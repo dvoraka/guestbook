@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class GuestbookController {
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private UserService userService;
 
     /**
@@ -31,6 +34,9 @@ public class GuestbookController {
 
         long count = userService.count();
         model.addAttribute("counter", count);
+
+        List<Comment> comments = commentService.getComments();
+        model.addAttribute("comments", comments);
 
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);

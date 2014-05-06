@@ -28,17 +28,21 @@ public class DefaultCommentDAO implements CommentDAO {
     public Comment get(Long id) {
 
         Session session = sessionFactory.getCurrentSession();
-        Query q = session.createQuery("FROM User U WHERE E.id = :id");
-        q.setParameter("id", id);
+        Comment comment = (Comment) session.get(Comment.class, id);
+
+        return comment;
+    }
+
+    @Transactional
+    @Override
+    public List<Comment> getComments() {
+
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Comment C";
+        Query q = session.createQuery(hql);
+
         List<Comment> clist = q.list();
 
-        if (clist.size() == 1) {
-
-            return clist.get(0);
-
-        } else {
-
-            return null;
-        }
+        return clist;
     }
 }
