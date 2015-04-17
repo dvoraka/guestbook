@@ -32,7 +32,7 @@
         class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close"
         p:driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-        p:url="jdbc:derby://localhost:1527/sample"
+        p:url="jdbc:derby:sample;create=true"
         p:username="app"
         p:password="app" />
 

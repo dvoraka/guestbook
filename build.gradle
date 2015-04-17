@@ -1,8 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
-apply plugin: 'checkstyle'
+// apply plugin: 'checkstyle'
 apply plugin: 'war'
 apply plugin: 'jetty'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+version = '0.1-SNAPSHOT'
 
 ext {
     springVersion = '3.2.7.RELEASE'
@@ -14,7 +18,20 @@ repositories {
 }
 
 dependencies {
+    compile("org.springframework:spring-beans:${springVersion}")
+    compile("org.springframework:spring-context:${springVersion}")
+    compile("org.springframework:spring-core:${springVersion}")
+    compile("org.springframework:spring-orm:${springVersion}")
+    compile("org.springframework:spring-web:${springVersion}")
+    compile("org.springframework:spring-webmvc:${springVersion}")
+    compile("org.springframework:spring-test:${springVersion}")
+    compile("org.springframework:spring-tx:${springVersion}")
+
     compile("org.hibernate:hibernate-core:${hibernateVersion}")
+
+    compile("commons-dbcp:commons-dbcp:1.4")
+    compile("org.slf4j:slf4j-api:1.7.12")
+    compile("org.apache.derby:derby:10.11.1.1")
 }
 
 task wrapper(type: Wrapper) {
