@@ -5,9 +5,15 @@ nbactions.xml
 .idea/
 *.iml
 
+# Eclipse
+.classpath
+.project
+.settings/
+
 # Gradle
 build/
 .gradle/
 
 sample/
 *.log
+/bin/
