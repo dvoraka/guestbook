@@ -33,6 +33,7 @@ public class DefaultCommentDAO implements CommentDAO {
         return comment;
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional
     @Override
     public List<Comment> getComments() {

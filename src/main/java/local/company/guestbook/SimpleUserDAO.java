@@ -16,6 +16,7 @@ public class SimpleUserDAO implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @SuppressWarnings("unchecked")
     @Transactional
     @Override
     public long count() {
@@ -26,6 +27,7 @@ public class SimpleUserDAO implements UserDAO {
         return counts.get(0);
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional
     @Override
     public List<User> getUsers() {
@@ -59,6 +61,7 @@ public class SimpleUserDAO implements UserDAO {
         return user;
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional
     @Override
     public List<User> getByName(String name) {
