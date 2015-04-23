@@ -3,10 +3,12 @@ package local.company.guestbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
@@ -65,6 +67,22 @@ public class GuestbookController {
     public String delUser(@PathVariable("userId") long id, Model model) {
 
         userService.deleteUser(id);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/reg/", method = RequestMethod.GET)
+    public String registerForm(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "register";
+    }
+
+    @RequestMapping(value = "/reg/", method = RequestMethod.POST)
+    public String registerSubmit(@ModelAttribute User user, Model model) {
+
+        System.out.println(user);
 
         return "redirect:/";
     }

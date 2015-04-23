@@ -15,6 +15,7 @@ public class User implements Serializable {
     private Long id;
 
     private String username;
+    private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
@@ -65,7 +66,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
 
-        return "User [id=" + id + "]";
+        return "User [id=" + id + ", name: " + username + "]";
     }
 
     public Date getCreated() {
@@ -74,5 +75,13 @@ public class User implements Serializable {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
