@@ -1,6 +1,8 @@
 package local.company.guestbook;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,10 +13,12 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
+    @Size(min=3, max=20)
     private String username;
+    
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
