@@ -16,14 +16,13 @@ public class User implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String username;
-    
+
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-
 
     public Long getId() {
         return id;
