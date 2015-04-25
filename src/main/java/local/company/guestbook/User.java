@@ -5,6 +5,8 @@ import javax.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -23,6 +25,9 @@ public class User implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
 
     public Long getId() {
         return id;

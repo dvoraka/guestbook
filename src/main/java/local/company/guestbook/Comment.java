@@ -18,6 +18,17 @@ public class Comment implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
+    @ManyToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -53,7 +64,8 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
 
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the id fields are
+        // not set
         if (!(object instanceof Comment)) {
 
             return false;
