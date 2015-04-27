@@ -1,24 +1,32 @@
 package local.company.guestbook;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final int MIN_USERNAME_LENGTH = 3;
+    private static final int MAX_USERNAME_LENGTH = 20;
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Size(min = 3, max = 20)
+    @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
     private String username;
 
     private String password;
@@ -63,7 +71,8 @@ public class User implements Serializable {
         }
 
         User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null)
+                || (this.id != null && !this.id.equals(other.id))) {
 
             return false;
         }

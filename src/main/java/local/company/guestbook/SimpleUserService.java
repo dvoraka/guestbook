@@ -11,6 +11,8 @@ import java.util.List;
 @Transactional
 public class SimpleUserService implements UserService {
 
+    private static final int RANDOM_USERNAME_LENGTH = 10;
+
     @Autowired
     private UserDAO userDAO;
 
@@ -33,7 +35,7 @@ public class SimpleUserService implements UserService {
         StringBuilder sb = new StringBuilder();
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < RANDOM_USERNAME_LENGTH; i++) {
 
             char c = chars[random.nextInt(chars.length)];
             sb.append(c);
