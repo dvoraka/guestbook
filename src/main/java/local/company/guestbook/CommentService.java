@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface CommentService {
 
+    long count();
+
     List<Comment> getComments();
 
 }

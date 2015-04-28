@@ -40,6 +40,9 @@ public class GuestbookController {
         long count = userService.count();
         model.addAttribute("counter", count);
 
+        long commentCount = commentService.count();
+        model.addAttribute("commentCounter", commentCount);
+
         List<Comment> comments = commentService.getComments();
         model.addAttribute("comments", comments);
 

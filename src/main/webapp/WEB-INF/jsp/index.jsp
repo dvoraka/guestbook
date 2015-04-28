@@ -21,6 +21,7 @@
                 ${comment} | ${comment.text}<br>
     </c:forEach>
   </ul>
+  <p>Comments: ${commentCounter}</p>
   <h2>List of all users</h2>
   <ul>
     <c:forEach var="user" items="${users}">

@@ -46,4 +46,14 @@ public class DefaultCommentDAO implements CommentDAO {
 
         return clist;
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public long count() {
+
+        Session session = sessionFactory.getCurrentSession();
+        List<Long> counts = session.createQuery("SELECT count(*) from Comment").list();
+
+        return counts.get(0);
+    }
 }

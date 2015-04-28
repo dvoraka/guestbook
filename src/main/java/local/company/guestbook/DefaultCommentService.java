@@ -21,4 +21,10 @@ public class DefaultCommentService implements CommentService {
 
         return commentDAO.getComments();
     }
+
+    @Override
+    public long count() {
+
+        return commentDAO.count();
+    }
 }
