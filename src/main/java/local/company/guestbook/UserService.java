@@ -17,6 +17,8 @@ public interface UserService {
 
     List<User> getUsersByName(String name);
 
+    void addUser(String username);
+
     void addRandomUser();
 
     void deleteUser(long id);

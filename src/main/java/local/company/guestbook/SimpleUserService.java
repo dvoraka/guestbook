@@ -66,4 +66,10 @@ public class SimpleUserService implements UserService {
 
         userDAO.deleteUser(id);
     }
+
+    @Override
+    public void addUser(String username) {
+
+        userDAO.addUser(username);
+    }
 }

@@ -83,15 +83,20 @@ public class GuestbookController {
     }
 
     @RequestMapping(value = "/reg/", method = RequestMethod.POST)
-    public String registerSubmit(@Valid @ModelAttribute("user") User user,
-            BindingResult result, Model model) {
+    public String registerSubmit(@Valid @ModelAttribute("user") User user, BindingResult result,
+            Model model) {
 
         System.out.println(user + "" + result);
 
         if (result.hasErrors()) {
-            return "register";
-        }
 
-        return "redirect:/";
+            return "register";
+
+        } else {
+
+            userService.addUser(user.getUsername());
+
+            return "redirect:/";
+        }
     }
 }
