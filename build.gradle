@@ -9,6 +9,22 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 version = '0.1-SNAPSHOT'
 
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
 ext {
     springVersion = '4.1.6.RELEASE'
     hibernateVersion = '4.3.8.Final'
@@ -43,6 +59,8 @@ dependencies {
     
     testCompile('org.codehaus.groovy:groovy-all:2.3.10')
     testCompile('org.spockframework:spock-core:1.0-groovy-2.3')
+
+    // integrationTestCompile('')
 }
 
 test {
@@ -58,3 +76,11 @@ checkstyle {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
