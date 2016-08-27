@@ -1,4 +1,4 @@
-package local.company.guestbook;
+package local.company.guestbook.model;
 
 import java.io.Serializable;
 import java.util.Date;

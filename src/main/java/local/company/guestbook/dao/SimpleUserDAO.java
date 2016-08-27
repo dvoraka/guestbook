@@ -1,5 +1,6 @@
-package local.company.guestbook;
+package local.company.guestbook.dao;
 
+import local.company.guestbook.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,4 +1,6 @@
-package local.company.guestbook;
+package local.company.guestbook.service;
+
+import local.company.guestbook.model.Comment;
 
 import java.util.List;
 

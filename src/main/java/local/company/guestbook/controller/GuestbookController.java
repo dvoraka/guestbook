@@ -1,5 +1,9 @@
-package local.company.guestbook;
+package local.company.guestbook.controller;
 
+import local.company.guestbook.model.Comment;
+import local.company.guestbook.model.User;
+import local.company.guestbook.service.CommentService;
+import local.company.guestbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,6 @@
-package local.company.guestbook;
+package local.company.guestbook.dao;
+
+import local.company.guestbook.model.User;
 
 import java.util.List;
 
