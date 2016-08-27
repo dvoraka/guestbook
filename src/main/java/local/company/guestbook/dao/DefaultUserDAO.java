@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class SimpleUserDAO implements UserDAO {
+public class DefaultUserDAO implements UserDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
