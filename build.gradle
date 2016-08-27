@@ -1,9 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'spring-boot'
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
 apply plugin: 'war'
-apply plugin: 'jetty'
-apply plugin: 'eclipse-wtp'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -27,9 +35,7 @@ configurations {
 }
 
 ext {
-    springVersion = '4.1.6.RELEASE'
     springBootVersion = '1.4.0.RELEASE'
-    hibernateVersion = '4.3.8.Final'
 }
 
 repositories {
