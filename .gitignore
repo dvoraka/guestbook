@@ -1,12 +1,9 @@
-target/
-
 # Netbeans
 nb-configuration.xml
 nbactions.xml
 
 # Idea
 .idea/
-*.iml
 
 # Eclipse
 .classpath
@@ -19,4 +16,4 @@ build/
 
 sample/
 *.log
-/bin/
+target/
