@@ -7,25 +7,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "COMMENTS")
-public class Comment implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "COMMENT")
+public class Comment {
 
     @Id
     @GeneratedValue
     private Long id;
 
     private String text;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
     @ManyToOne
     private User user;
+
 
     public User getUser() {
         return user;
@@ -60,36 +59,43 @@ public class Comment implements Serializable {
     }
 
     @Override
-    public int hashCode() {
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        Comment comment = (Comment) o;
+
+        if (text != null ? !text.equals(comment.text) : comment.text != null) {
+            return false;
+        }
+        if (created != null ? !created.equals(comment.created) : comment.created != null) {
+            return false;
+        }
+
+        return user != null ? user.equals(comment.user) : comment.user == null;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public int hashCode() {
+        final int prime = 31;
+        int result = text != null ? text.hashCode() : 0;
+        result = prime * result + (created != null ? created.hashCode() : 0);
+        result = prime * result + (user != null ? user.hashCode() : 0);
 
-        // TODO: Warning - this method won't work in the case the id fields are
-        // not set
-        if (!(object instanceof Comment)) {
-
-            return false;
-        }
-
-        Comment other = (Comment) object;
-        if ((this.id == null && other.id != null)
-                || (this.id != null && !this.id.equals(other.id))) {
-
-            return false;
-        }
-
-        return true;
+        return result;
     }
 
     @Override
     public String toString() {
-
-        return "Comment [id=" + id + "]";
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", created=" + created +
+                ", user=" + user +
+                '}';
     }
 }

@@ -8,16 +8,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
-public class User implements Serializable {
+public class User {
 
-    private static final long serialVersionUID = 1L;
     private static final int MIN_USERNAME_LENGTH = 3;
     private static final int MAX_USERNAME_LENGTH = 20;
 
@@ -36,6 +34,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
 
+
     public Long getId() {
         return id;
     }
@@ -52,39 +51,6 @@ public class User implements Serializable {
         this.username = name;
     }
 
-    @Override
-    public int hashCode() {
-
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-
-        if (!(object instanceof User)) {
-
-            return false;
-        }
-
-        User other = (User) object;
-        if ((this.id == null && other.id != null)
-                || (this.id != null && !this.id.equals(other.id))) {
-
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public String toString() {
-
-        return "User [id=" + id + ", name: " + username + "]";
-    }
-
     public Date getCreated() {
         return created;
     }
@@ -99,5 +65,52 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        if (username != null ? !username.equals(user.username) : user.username != null) {
+            return false;
+        }
+        if (password != null ? !password.equals(user.password) : user.password != null) {
+            return false;
+        }
+        if (created != null ? !created.equals(user.created) : user.created != null) {
+            return false;
+        }
+
+        return comments != null ? comments.equals(user.comments) : user.comments == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = username != null ? username.hashCode() : 0;
+        result = prime * result + (password != null ? password.hashCode() : 0);
+        result = prime * result + (created != null ? created.hashCode() : 0);
+        result = prime * result + (comments != null ? comments.hashCode() : 0);
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", created=" + created +
+                ", comments=" + comments +
+                '}';
     }
 }
