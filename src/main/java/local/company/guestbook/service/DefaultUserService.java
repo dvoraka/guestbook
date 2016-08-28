@@ -2,6 +2,7 @@ package local.company.guestbook.service;
 
 import local.company.guestbook.dao.UserDAO;
 import local.company.guestbook.model.User;
+import local.company.guestbook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,28 +12,28 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SimpleUserService implements UserService {
+public class DefaultUserService implements UserService {
 
     private static final int RANDOM_USERNAME_LENGTH = 10;
 
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Override
     public long count() {
-
-        return userDAO.count();
+        return userRepository.count();
     }
 
     @Override
     public List<User> getUsers() {
-
-        return userDAO.getUsers();
+        return userRepository.findAll();
     }
 
     @Override
     public void addRandomUser() {
-
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -49,7 +50,6 @@ public class SimpleUserService implements UserService {
 
     @Override
     public User getUser(Long userId) {
-
         User user = userDAO.get(userId);
 
         return user;
@@ -57,7 +57,6 @@ public class SimpleUserService implements UserService {
 
     @Override
     public List<User> getUsersByName(String name) {
-
         List<User> users = userDAO.getByName(name);
 
         return users;
@@ -65,13 +64,11 @@ public class SimpleUserService implements UserService {
 
     @Override
     public void deleteUser(long id) {
-
         userDAO.deleteUser(id);
     }
 
     @Override
     public void addUser(String username) {
-
         userDAO.addUser(username);
     }
 }
