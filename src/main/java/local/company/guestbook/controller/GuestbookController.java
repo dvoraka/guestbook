@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +27,6 @@ public class GuestbookController {
 
     @Autowired
     private CommentService commentService;
-
     @Autowired
     private UserService userService;
 
@@ -65,7 +65,6 @@ public class GuestbookController {
      */
     @RequestMapping(value = "/add-rand-user/", method = RequestMethod.GET)
     public String addRandUser(Model model) {
-
         userService.addRandomUser();
 
         return "redirect:/";
@@ -73,7 +72,6 @@ public class GuestbookController {
 
     @RequestMapping(value = "/delete-user/{userId}", method = RequestMethod.GET)
     public String delUser(@PathVariable("userId") long id, Model model) {
-
         userService.deleteUser(id);
 
         return "redirect:/";
@@ -81,7 +79,6 @@ public class GuestbookController {
 
     @RequestMapping(value = "/reg/", method = RequestMethod.GET)
     public String registerForm(Model model) {
-
         model.addAttribute("user", new User());
 
         return "register";
@@ -90,16 +87,12 @@ public class GuestbookController {
     @RequestMapping(value = "/reg/", method = RequestMethod.POST)
     public String registerSubmit(@Valid @ModelAttribute("user") User user, BindingResult result,
                                  Model model) {
-
-        System.out.println(user + "" + result);
-
         if (result.hasErrors()) {
 
             return "register";
-
         } else {
-
-            userService.addUser(user.getUsername());
+            user.setCreated(new Date());
+            userService.addUser(user);
 
             return "redirect:/";
         }

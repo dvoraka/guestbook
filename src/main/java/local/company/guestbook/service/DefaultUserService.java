@@ -65,6 +65,11 @@ public class DefaultUserService implements UserService {
         userRepository.save(createUser(username));
     }
 
+    @Override
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
+
     private User createUser(String username) {
         User user = new User();
         user.setUsername(username);

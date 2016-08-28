@@ -21,6 +21,8 @@ public interface UserService {
 
     void addUser(String username);
 
+    void addUser(User user);
+
     void addRandomUser();
 
     void deleteUser(long id);
