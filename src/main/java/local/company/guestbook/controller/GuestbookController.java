@@ -52,7 +52,7 @@ public class GuestbookController {
         model.addAttribute("users", users);
 
         List<User> foundUsers = userService.getUsersByName("mary");
-        model.addAttribute("foundusers", foundUsers);
+        model.addAttribute("foundUsers", foundUsers);
 
         return "index";
     }

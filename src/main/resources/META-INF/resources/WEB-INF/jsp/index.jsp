@@ -30,6 +30,6 @@
     </c:forEach>
   </ul>
   <p>Users: ${counter}</p>
-  <p>Found users: ${foundusers}</p>
+  <p>Found users: ${foundUsers}</p>
 </body>
 </html>
