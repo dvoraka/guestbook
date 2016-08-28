@@ -13,5 +13,4 @@ public interface CommentDAO {
     Comment get(Long id);
 
     List<Comment> getComments();
-
 }

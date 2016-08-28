@@ -5,7 +5,7 @@ import local.company.guestbook.model.User;
 import java.util.List;
 
 /**
- * Service layer for UserDAO.
+ * Service layer for User repository.
  *
  * @author dvoraka
  */
@@ -26,5 +26,4 @@ public interface UserService {
     void addRandomUser();
 
     void deleteUser(long id);
-
 }
