@@ -8,10 +8,10 @@
 
 <h1>Guestbook</h1>
 <p>
-    <a href="/add-rand-user/">Generate new user</a>
+    <a th:href="@{/add-rand-user/}">Generate new user</a>
 </p>
 <p>
-    <a href="/reg/">Register new user</a>
+    <a th:href="@{/reg/}">Register new user</a>
 </p>
 
 <h2>Comments</h2>
@@ -19,7 +19,10 @@
 
 <h2>List of all users</h2>
 <ul th:each="user : ${users}">
-    <li th:text="${user.id}">1</li>
+    <li>
+        <span th:text="${user.id} + '-' + ${user.username} + ' (created: ' + ${user.created} + ')'"></span>
+        <a th:href="@{'/delete-user/' + ${user.id}}">delete</a>
+    </li>
 </ul>
 
 <p>Users: <span th:text="${counter}">0</span></p>
