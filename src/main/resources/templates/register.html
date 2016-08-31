@@ -2,8 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Guestbook registration</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+<h2>Register</h2>
+
+<form action="#" th:action="@{/reg/}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" th:field="*{username}"/></td>
+            <td th:if="${#fields.hasErrors('username')}"
+                th:errors="*{username}">User error message
+            </td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}"/></td>
+            <td th:if="${#fields.hasErrors('password')}"
+                th:errors="*{password}">Password error message
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Register"/></td>
+        </tr>
+    </table>
+</form>
+
 </body>
 </html>
