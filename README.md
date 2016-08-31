@@ -4,6 +4,14 @@ guestbook
 
 Spring MVC study project.
 
+### Components
+ * Spring Boot
+ * Spring MVC
+ * Thymeleaf
+ * Spring Data JPA
+ * Spock
+ * Gradle
+
 ### Run application
 ```
 $ ./gradlew bootRun
