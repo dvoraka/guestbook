@@ -2,8 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Guestbook index</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+<h1>Guestbook</h1>
+<p>
+    <a href="/add-rand-user/">Generate new user</a>
+</p>
+<p>
+    <a href="/reg/">Register new user</a>
+</p>
+
+<h2>Comments</h2>
+<p>Comments: <span th:text="${commentCounter}">0</span></p>
+
+<h2>List of all users</h2>
+<ul th:each="user : ${users}">
+    <li th:text="${user.id}">1</li>
+</ul>
+
+<p>Users: <span th:text="${counter}">0</span></p>
+<p>Found users: <span th:text="${foundUsers}">[]</span></p>
+
 </body>
 </html>
