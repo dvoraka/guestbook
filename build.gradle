@@ -69,6 +69,7 @@ test {
 
 checkstyle {
     toolVersion = "7.1"
+    ignoreFailures = true
 }
 
 task wrapper(type: Wrapper) {
