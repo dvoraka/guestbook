@@ -1,5 +1,5 @@
 plugins {
-    id "io.spring.dependency-management" version "1.0.0.RC1"
+    id 'org.springframework.boot' version '1.4.2.RELEASE'
 }
 
 apply plugin: 'java'
@@ -34,7 +34,6 @@ repositories {
 
 dependencyManagement {
      imports {
-          mavenBom 'org.springframework.boot:spring-boot-starter:1.4.3.RELEASE'
      }
 }
 
