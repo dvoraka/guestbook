@@ -5,6 +5,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 apply plugin: 'war'
 apply plugin: 'idea'
 
@@ -61,11 +62,23 @@ test {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:all"
+}
+
 checkstyle {
     toolVersion = '7.3'
     sourceSets = [sourceSets.main]
 
     ignoreFailures = false
+}
+
+findbugs {
+    toolVersion = '3.0.1'
+    reportLevel = 'medium'
+    sourceSets = [sourceSets.main]
+
+    ignoreFailures = true
 }
 
 task wrapper(type: Wrapper) {
