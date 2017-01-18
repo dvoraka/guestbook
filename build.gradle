@@ -6,6 +6,8 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'jacoco'
 apply plugin: 'war'
 apply plugin: 'idea'
 
@@ -40,7 +42,7 @@ dependencyManagement {
 }
 
 dependencies {
-    // Spring Boot
+    // Spring
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
@@ -81,6 +83,17 @@ findbugs {
     ignoreFailures = true
 }
 
+pmd {
+    toolVersion = '5.5.2'
+    sourceSets = [sourceSets.main]
+
+    ignoreFailures = false
+}
+
+jacoco {
+    toolVersion = '0.7.8'
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '3.3'
 }
@@ -91,4 +104,4 @@ task integrationTest(type: Test) {
 }
 
 check.dependsOn integrationTest
-integrationTest.mustRunAfter test
+check.dependsOn jacocoTestReport
