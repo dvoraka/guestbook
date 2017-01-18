@@ -63,6 +63,8 @@ test {
 
 checkstyle {
     toolVersion = '7.3'
+    sourceSets = [sourceSets.main]
+
     ignoreFailures = false
 }
 
