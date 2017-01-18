@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -25,16 +23,20 @@ import java.util.List;
 @Controller
 public class GuestbookController {
 
-    @Autowired
-    private CommentService commentService;
-    @Autowired
-    private UserService userService;
+    private final CommentService commentService;
+    private final UserService userService;
 
+
+    @Autowired
+    public GuestbookController(CommentService commentService, UserService userService) {
+        this.commentService = commentService;
+        this.userService = userService;
+    }
 
     /**
-     * Prepares index page.
+     * Index page.
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String index(Model model) {
 
         long count = userService.count();
@@ -58,14 +60,14 @@ public class GuestbookController {
     /**
      * Adds a random user to the DB and redirects to /.
      */
-    @RequestMapping(value = "/add-rand-user/", method = RequestMethod.GET)
+    @GetMapping(value = "/add-rand-user/")
     public String addRandomUser() {
         userService.addRandomUser();
 
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/delete-user/{userId}", method = RequestMethod.GET)
+    @GetMapping(value = "/delete-user/{userId}")
     public String delUser(@PathVariable("userId") long id) {
         userService.deleteUser(id);
 
