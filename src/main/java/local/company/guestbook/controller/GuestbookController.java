@@ -57,6 +57,14 @@ public class GuestbookController {
         return "index";
     }
 
+    @GetMapping("/comments")
+    public String comments(Model model) {
+
+        model.addAttribute("comments", commentService.getComments());
+
+        return "comments";
+    }
+
     /**
      * Adds a random user to the DB and redirects to /.
      */
