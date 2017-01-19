@@ -1,6 +1,6 @@
 package local.company.guestbook.service;
 
-import local.company.guestbook.model.User;
+import local.company.guestbook.model.Author;
 
 import java.util.List;
 
@@ -13,15 +13,15 @@ public interface UserService {
 
     long count();
 
-    List<User> getUsers();
+    List<Author> getUsers();
 
-    User getUser(Long userId);
+    Author getUser(Long userId);
 
-    List<User> getUsersByName(String name);
+    List<Author> getUsersByName(String name);
 
     void addUser(String username);
 
-    void addUser(User user);
+    void addUser(Author author);
 
     void addRandomUser();
 

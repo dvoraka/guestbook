@@ -1,7 +1,7 @@
 package local.company.guestbook.controller;
 
+import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
-import local.company.guestbook.model.User;
 import local.company.guestbook.service.CommentService;
 import local.company.guestbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +48,11 @@ public class GuestbookController {
         List<Comment> comments = commentService.getComments();
         model.addAttribute("comments", comments);
 
-        List<User> users = userService.getUsers();
-        model.addAttribute("users", users);
+        List<Author> authors = userService.getUsers();
+        model.addAttribute("users", authors);
 
-        List<User> foundUsers = userService.getUsersByName("mary");
-        model.addAttribute("foundUsers", foundUsers);
+        List<Author> foundAuthors = userService.getUsersByName("mary");
+        model.addAttribute("foundUsers", foundAuthors);
 
         return "index";
     }
@@ -84,19 +84,22 @@ public class GuestbookController {
 
     @GetMapping(value = "/reg/")
     public String registerForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Author());
 
         return "register";
     }
 
     @PostMapping(value = "/reg/")
-    public String registerSubmit(@Valid @ModelAttribute("user") User user, BindingResult result) {
+    public String registerSubmit(
+            @Valid @ModelAttribute("user") Author author,
+            BindingResult result
+    ) {
         if (result.hasErrors()) {
 
             return "register";
         } else {
-            user.setCreated(new Date());
-            userService.addUser(user);
+            author.setCreated(new Date());
+            userService.addUser(author);
 
             return "redirect:/";
         }

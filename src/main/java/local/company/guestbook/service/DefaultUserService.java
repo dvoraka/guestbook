@@ -1,6 +1,6 @@
 package local.company.guestbook.service;
 
-import local.company.guestbook.model.User;
+import local.company.guestbook.model.Author;
 import local.company.guestbook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<Author> getUsers() {
         return userRepository.findAll();
     }
 
@@ -46,12 +46,12 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public User getUser(Long userId) {
+    public Author getUser(Long userId) {
         return userRepository.findOne(userId);
     }
 
     @Override
-    public List<User> getUsersByName(String name) {
+    public List<Author> getUsersByName(String name) {
         return userRepository.findByUsername(name);
     }
 
@@ -66,15 +66,15 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
-        userRepository.save(user);
+    public void addUser(Author author) {
+        userRepository.save(author);
     }
 
-    private User createUser(String username) {
-        User user = new User();
-        user.setUsername(username);
-        user.setCreated(new Date());
+    private Author createUser(String username) {
+        Author author = new Author();
+        author.setUsername(username);
+        author.setCreated(new Date());
 
-        return user;
+        return author;
     }
 }

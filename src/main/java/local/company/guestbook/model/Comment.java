@@ -18,21 +18,11 @@ public class Comment {
     private Long id;
 
     private String text;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-
     @ManyToOne
-    private User user;
+    private Author author;
 
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -58,6 +48,14 @@ public class Comment {
         this.created = date;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -76,7 +74,7 @@ public class Comment {
             return false;
         }
 
-        return user != null ? user.equals(comment.user) : comment.user == null;
+        return author != null ? author.equals(comment.author) : comment.author == null;
     }
 
     @Override
@@ -84,7 +82,7 @@ public class Comment {
         final int prime = 31;
         int result = text != null ? text.hashCode() : 0;
         result = prime * result + (created != null ? created.hashCode() : 0);
-        result = prime * result + (user != null ? user.hashCode() : 0);
+        result = prime * result + (author != null ? author.hashCode() : 0);
 
         return result;
     }
@@ -95,7 +93,7 @@ public class Comment {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", created=" + created +
-                ", user=" + user +
+                ", user=" + author +
                 '}';
     }
 }

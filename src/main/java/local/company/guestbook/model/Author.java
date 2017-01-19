@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
-public class User {
+@Table(name = "AUTHOR")
+public class Author {
 
     private static final int MIN_USERNAME_LENGTH = 3;
     private static final int MAX_USERNAME_LENGTH = 20;
@@ -22,15 +22,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
     private String username;
-
     private String password;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
@@ -51,6 +47,14 @@ public class User {
         this.username = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -59,12 +63,12 @@ public class User {
         this.created = created;
     }
 
-    public String getPassword() {
-        return password;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
@@ -76,19 +80,19 @@ public class User {
             return false;
         }
 
-        User user = (User) o;
+        Author author = (Author) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null) {
+        if (username != null ? !username.equals(author.username) : author.username != null) {
             return false;
         }
-        if (password != null ? !password.equals(user.password) : user.password != null) {
+        if (password != null ? !password.equals(author.password) : author.password != null) {
             return false;
         }
-        if (created != null ? !created.equals(user.created) : user.created != null) {
+        if (created != null ? !created.equals(author.created) : author.created != null) {
             return false;
         }
 
-        return comments != null ? comments.equals(user.comments) : user.comments == null;
+        return comments != null ? comments.equals(author.comments) : author.comments == null;
 
     }
 
