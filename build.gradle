@@ -46,6 +46,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    // Spring dev tools
+    compile("org.springframework.boot:spring-boot-devtools")
+    // PostgreSQL
+    compile('org.postgresql:postgresql')
+
     // Logging
     compile('org.apache.logging.log4j:log4j-api')
     compile('org.apache.logging.log4j:log4j-core')
@@ -55,7 +60,7 @@ dependencies {
     testCompile('org.spockframework:spock-core')
 
     // Database
-    runtime('org.apache.derby:derby')
+//    runtime('org.apache.derby:derby')
 }
 
 test {
