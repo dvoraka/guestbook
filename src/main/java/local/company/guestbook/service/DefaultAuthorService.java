@@ -1,7 +1,7 @@
 package local.company.guestbook.service;
 
 import local.company.guestbook.model.Author;
-import local.company.guestbook.repository.UserRepository;
+import local.company.guestbook.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,25 +9,30 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class DefaultUserService implements UserService {
+public class DefaultAuthorService implements AuthorService {
 
     private static final int RANDOM_USERNAME_LENGTH = 10;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final AuthorRepository authorRepository;
 
+
+    @Autowired
+    public DefaultAuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public long count() {
-        return userRepository.count();
+        return authorRepository.count();
     }
 
     @Override
     public List<Author> getUsers() {
-        return userRepository.findAll();
+        return authorRepository.findAll();
     }
 
     @Override
@@ -42,32 +47,32 @@ public class DefaultUserService implements UserService {
         }
         String randStr = sb.toString();
 
-        userRepository.save(createUser(randStr));
+        authorRepository.save(createUser(randStr));
     }
 
     @Override
     public Author getUser(Long userId) {
-        return userRepository.findOne(userId);
+        return authorRepository.findOne(userId);
     }
 
     @Override
     public List<Author> getUsersByName(String name) {
-        return userRepository.findByUsername(name);
+        return authorRepository.findByUsername(name).collect(Collectors.toList());
     }
 
     @Override
     public void deleteUser(long id) {
-        userRepository.delete(id);
+        authorRepository.delete(id);
     }
 
     @Override
     public void addUser(String username) {
-        userRepository.save(createUser(username));
+        authorRepository.save(createUser(username));
     }
 
     @Override
     public void addUser(Author author) {
-        userRepository.save(author);
+        authorRepository.save(author);
     }
 
     private Author createUser(String username) {

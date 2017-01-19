@@ -4,13 +4,13 @@ import local.company.guestbook.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
- * User repository.
+ * Repository for authors.
  */
 @Repository
-public interface UserRepository extends JpaRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 
-    List<Author> findByUsername(String username);
+    Stream<Author> findByUsername(String username);
 }

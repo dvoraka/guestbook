@@ -6,10 +6,8 @@ import java.util.List;
 
 /**
  * Service layer for User repository.
- *
- * @author dvoraka
  */
-public interface UserService {
+public interface AuthorService {
 
     long count();
 

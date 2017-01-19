@@ -27,7 +27,7 @@ public class Author {
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "author")
     private List<Comment> comments = new ArrayList<>();
 
 

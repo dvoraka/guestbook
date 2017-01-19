@@ -2,8 +2,8 @@ package local.company.guestbook.controller;
 
 import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
+import local.company.guestbook.service.AuthorService;
 import local.company.guestbook.service.CommentService;
-import local.company.guestbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,22 +24,22 @@ import java.util.List;
 public class GuestbookController {
 
     private final CommentService commentService;
-    private final UserService userService;
+    private final AuthorService authorService;
 
 
     @Autowired
-    public GuestbookController(CommentService commentService, UserService userService) {
+    public GuestbookController(CommentService commentService, AuthorService authorService) {
         this.commentService = commentService;
-        this.userService = userService;
+        this.authorService = authorService;
     }
 
     /**
      * Index page.
      */
-    @GetMapping(value = "/")
+    @GetMapping("/")
     public String index(Model model) {
 
-        long count = userService.count();
+        long count = authorService.count();
         model.addAttribute("counter", count);
 
         long commentCount = commentService.count();
@@ -48,10 +48,10 @@ public class GuestbookController {
         List<Comment> comments = commentService.getComments();
         model.addAttribute("comments", comments);
 
-        List<Author> authors = userService.getUsers();
+        List<Author> authors = authorService.getUsers();
         model.addAttribute("users", authors);
 
-        List<Author> foundAuthors = userService.getUsersByName("mary");
+        List<Author> foundAuthors = authorService.getUsersByName("mary");
         model.addAttribute("foundUsers", foundAuthors);
 
         return "index";
@@ -70,14 +70,14 @@ public class GuestbookController {
      */
     @GetMapping(value = "/add-rand-user/")
     public String addRandomUser() {
-        userService.addRandomUser();
+        authorService.addRandomUser();
 
         return "redirect:/";
     }
 
     @GetMapping(value = "/delete-user/{userId}")
     public String delUser(@PathVariable("userId") long id) {
-        userService.deleteUser(id);
+        authorService.deleteUser(id);
 
         return "redirect:/";
     }
@@ -99,7 +99,7 @@ public class GuestbookController {
             return "register";
         } else {
             author.setCreated(new Date());
-            userService.addUser(author);
+            authorService.addUser(author);
 
             return "redirect:/";
         }
