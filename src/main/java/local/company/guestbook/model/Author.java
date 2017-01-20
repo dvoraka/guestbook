@@ -5,11 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,8 +23,7 @@ public class Author {
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
     private String username;
     private String password;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    private Instant created;
     @OneToMany(mappedBy = "author")
     private List<Comment> comments = new ArrayList<>();
 
@@ -55,11 +52,11 @@ public class Author {
         this.password = password;
     }
 
-    public Date getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Instant created) {
         this.created = created;
     }
 

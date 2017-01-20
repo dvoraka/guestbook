@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,12 +31,12 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public List<Author> getUsers() {
+    public List<Author> getAuthors() {
         return authorRepository.findAll();
     }
 
     @Override
-    public void addRandomUser() {
+    public void addRandomAuthor() {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -51,34 +51,34 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public Author getUser(Long userId) {
+    public Author getAuthor(Long userId) {
         return authorRepository.findOne(userId);
     }
 
     @Override
-    public List<Author> getUsersByName(String name) {
+    public List<Author> getAuthorsByName(String name) {
         return authorRepository.findByUsername(name).collect(Collectors.toList());
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteAuthor(long id) {
         authorRepository.delete(id);
     }
 
     @Override
-    public void addUser(String username) {
+    public void addAuthor(String username) {
         authorRepository.save(createUser(username));
     }
 
     @Override
-    public void addUser(Author author) {
+    public void addAuthor(Author author) {
         authorRepository.save(author);
     }
 
     private Author createUser(String username) {
         Author author = new Author();
         author.setUsername(username);
-        author.setCreated(new Date());
+        author.setCreated(Instant.now());
 
         return author;
     }

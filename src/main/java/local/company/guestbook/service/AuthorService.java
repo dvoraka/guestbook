@@ -5,23 +5,23 @@ import local.company.guestbook.model.Author;
 import java.util.List;
 
 /**
- * Service layer for User repository.
+ * Service layer for Author repository.
  */
 public interface AuthorService {
 
     long count();
 
-    List<Author> getUsers();
+    List<Author> getAuthors();
 
-    Author getUser(Long userId);
+    Author getAuthor(Long userId);
 
-    List<Author> getUsersByName(String name);
+    List<Author> getAuthorsByName(String name);
 
-    void addUser(String username);
+    void addAuthor(String username);
 
-    void addUser(Author author);
+    void addAuthor(Author author);
 
-    void addRandomUser();
+    void addRandomAuthor();
 
-    void deleteUser(long id);
+    void deleteAuthor(long id);
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -48,10 +48,10 @@ public class GuestbookController {
         List<Comment> comments = commentService.getComments();
         model.addAttribute("comments", comments);
 
-        List<Author> authors = authorService.getUsers();
+        List<Author> authors = authorService.getAuthors();
         model.addAttribute("users", authors);
 
-        List<Author> foundAuthors = authorService.getUsersByName("mary");
+        List<Author> foundAuthors = authorService.getAuthorsByName("mary");
         model.addAttribute("foundUsers", foundAuthors);
 
         return "index";
@@ -70,14 +70,14 @@ public class GuestbookController {
      */
     @GetMapping(value = "/add-rand-user/")
     public String addRandomUser() {
-        authorService.addRandomUser();
+        authorService.addRandomAuthor();
 
         return "redirect:/";
     }
 
     @GetMapping(value = "/delete-user/{userId}")
     public String delUser(@PathVariable("userId") long id) {
-        authorService.deleteUser(id);
+        authorService.deleteAuthor(id);
 
         return "redirect:/";
     }
@@ -98,8 +98,8 @@ public class GuestbookController {
 
             return "register";
         } else {
-            author.setCreated(new Date());
-            authorService.addUser(author);
+            author.setCreated(Instant.now());
+            authorService.addAuthor(author);
 
             return "redirect:/";
         }
