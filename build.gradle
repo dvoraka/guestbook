@@ -85,7 +85,7 @@ findbugs {
     reportLevel = 'medium'
     sourceSets = [sourceSets.main]
 
-    ignoreFailures = true
+    ignoreFailures = false
 }
 
 tasks.withType(FindBugs) {
