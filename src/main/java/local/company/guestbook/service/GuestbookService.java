@@ -10,5 +10,4 @@ public interface GuestbookService {
     List<Author> getUsers();
 
     List<Comment> getComments();
-
 }

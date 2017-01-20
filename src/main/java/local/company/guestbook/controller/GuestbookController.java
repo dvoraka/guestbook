@@ -68,28 +68,28 @@ public class GuestbookController {
     /**
      * Adds a random user to the DB and redirects to /.
      */
-    @GetMapping(value = "/add-rand-user/")
+    @GetMapping("/add-rand-user/")
     public String addRandomUser() {
         authorService.addRandomAuthor();
 
         return "redirect:/";
     }
 
-    @GetMapping(value = "/delete-user/{userId}")
+    @GetMapping("/delete-user/{userId}")
     public String delUser(@PathVariable("userId") long id) {
         authorService.deleteAuthor(id);
 
         return "redirect:/";
     }
 
-    @GetMapping(value = "/reg/")
+    @GetMapping("/reg/")
     public String registerForm(Model model) {
         model.addAttribute("user", new Author());
 
         return "register";
     }
 
-    @PostMapping(value = "/reg/")
+    @PostMapping("/reg/")
     public String registerSubmit(
             @Valid @ModelAttribute("user") Author author,
             BindingResult result

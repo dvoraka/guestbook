@@ -11,6 +11,9 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Default Author service implementation.
+ */
 @Service
 @Transactional
 public class DefaultAuthorService implements AuthorService {

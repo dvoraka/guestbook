@@ -15,9 +15,13 @@ import java.util.List;
 @Transactional
 public class DefaultCommentService implements CommentService {
 
-    @Autowired
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
+
+    @Autowired
+    public DefaultCommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     @Override
     public List<Comment> getComments() {

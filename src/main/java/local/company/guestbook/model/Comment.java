@@ -5,9 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "COMMENT")
@@ -18,8 +16,8 @@ public class Comment {
     private Long id;
 
     private String text;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    private Instant created;
+
     @ManyToOne
     private Author author;
 
@@ -40,11 +38,11 @@ public class Comment {
         this.text = text;
     }
 
-    public Date getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(Date date) {
+    public void setCreated(Instant date) {
         this.created = date;
     }
 

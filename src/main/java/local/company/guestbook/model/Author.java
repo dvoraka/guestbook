@@ -20,10 +20,12 @@ public class Author {
     @Id
     @GeneratedValue
     private Long id;
+
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
     private String username;
     private String password;
     private Instant created;
+
     @OneToMany(mappedBy = "author")
     private List<Comment> comments = new ArrayList<>();
 
