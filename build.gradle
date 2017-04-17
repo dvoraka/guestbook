@@ -59,8 +59,8 @@ dependencies {
     testCompile('org.codehaus.groovy:groovy-all')
     testCompile('org.spockframework:spock-core')
 
-    // Database
-//    runtime('org.apache.derby:derby')
+    // Embedded database
+    runtime('org.apache.derby:derby')
 }
 
 test {
