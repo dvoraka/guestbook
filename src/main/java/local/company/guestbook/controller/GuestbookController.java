@@ -74,17 +74,31 @@ public class GuestbookController {
      */
     @GetMapping("/add-rand-user/")
     public String addRandomUser() {
-        Author randomAuthor = authorService.addRandomAuthor();
-        log.debug("Saved: {}", randomAuthor);
+        saveRandomAuthor();
 
         return "redirect:/";
     }
 
     @GetMapping("/add-rand-comment/")
     public String addRandomComment() {
-        authorService.addRandomAuthor();
+        Author randomAuthor = saveRandomAuthor();
+        saveRandomComment(randomAuthor);
 
         return "redirect:/";
+    }
+
+    private Author saveRandomAuthor() {
+        Author randomAuthor = authorService.addRandomAuthor();
+        log.debug("Saved: {}", randomAuthor);
+
+        return randomAuthor;
+    }
+
+    private Comment saveRandomComment(Author author) {
+        Comment randomComment = commentService.addRandomComment(author);
+        log.debug("Saved: {}", randomComment);
+
+        return randomComment;
     }
 
     @GetMapping("/delete-user/{userId}")

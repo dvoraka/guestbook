@@ -1,5 +1,6 @@
 package local.company.guestbook.service;
 
+import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface CommentService {
     long count();
 
     List<Comment> getComments();
+
+    Comment addRandomComment(Author author);
 }
