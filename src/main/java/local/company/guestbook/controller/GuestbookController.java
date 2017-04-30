@@ -7,9 +7,11 @@ import local.company.guestbook.service.CommentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -129,5 +131,12 @@ public class GuestbookController {
 
             return "redirect:/";
         }
+    }
+
+    @ExceptionHandler(DataAccessException.class)
+    public String databaseError(DataAccessException ex) {
+        log.warn("Database error: {}", ex);
+
+        return "dbError";
     }
 }
