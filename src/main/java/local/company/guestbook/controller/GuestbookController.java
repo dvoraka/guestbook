@@ -4,8 +4,8 @@ import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
 import local.company.guestbook.service.AuthorService;
 import local.company.guestbook.service.CommentService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class GuestbookController {
     private final CommentService commentService;
     private final AuthorService authorService;
 
-    private static final Logger log = LogManager.getLogger(GuestbookController.class);
+    private static final Logger log = LoggerFactory.getLogger(GuestbookController.class);
 
 
     @Autowired
@@ -65,7 +65,6 @@ public class GuestbookController {
 
     @GetMapping("/comments")
     public String comments(Model model) {
-
         model.addAttribute("comments", commentService.getComments());
 
         return "comments";
@@ -135,7 +134,7 @@ public class GuestbookController {
 
     @ExceptionHandler(DataAccessException.class)
     public String databaseError(DataAccessException ex) {
-        log.warn("Database error: {}", ex);
+        log.warn("Database error: ", ex);
 
         return "dbError";
     }
