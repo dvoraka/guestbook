@@ -21,7 +21,7 @@ public interface AuthorService {
 
     void addAuthor(Author author);
 
-    void addRandomAuthor();
+    Author addRandomAuthor();
 
     void deleteAuthor(long id);
 }

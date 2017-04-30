@@ -4,6 +4,8 @@ import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
 import local.company.guestbook.service.AuthorService;
 import local.company.guestbook.service.CommentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class GuestbookController {
 
     private final CommentService commentService;
     private final AuthorService authorService;
+
+    private static final Logger log = LogManager.getLogger(GuestbookController.class);
 
 
     @Autowired
@@ -70,6 +74,14 @@ public class GuestbookController {
      */
     @GetMapping("/add-rand-user/")
     public String addRandomUser() {
+        Author randomAuthor = authorService.addRandomAuthor();
+        log.debug("Saved: {}", randomAuthor);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/add-rand-comment/")
+    public String addRandomComment() {
         authorService.addRandomAuthor();
 
         return "redirect:/";

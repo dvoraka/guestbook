@@ -108,7 +108,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Author {" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

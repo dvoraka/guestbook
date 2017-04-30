@@ -39,7 +39,7 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public void addRandomAuthor() {
+    public Author addRandomAuthor() {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -50,7 +50,7 @@ public class DefaultAuthorService implements AuthorService {
         }
         String randStr = sb.toString();
 
-        authorRepository.save(createUser(randStr));
+        return authorRepository.save(createUser(randStr));
     }
 
     @Override
