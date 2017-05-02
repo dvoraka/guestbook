@@ -22,6 +22,7 @@ import java.security.Principal;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Guestbook controller.
@@ -148,9 +149,16 @@ public class GuestbookController {
             BindingResult result,
             Principal principal
     ) {
-        Author author = authorService.findAuthor(principal.getName());
-        comment.setAuthor(author);
-        commentService.addComment(comment);
+        if (principal != null) {
+            Optional<Author> author = authorService.findAuthor(principal.getName());
+
+            if (author.isPresent()) {
+                comment.setAuthor(author.get());
+                comment.setCreated(Instant.now());
+
+                commentService.addComment(comment);
+            }
+        }
 
         return "redirect:/";
     }

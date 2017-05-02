@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Default Author service implementation.
@@ -53,19 +54,9 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public Author getAuthor(Long userId) {
-        return authorRepository.findOne(userId);
-    }
-
-    @Override
-    public Author findAuthor(String name) {
+    public Optional<Author> findAuthor(String name) {
         return authorRepository.findByUsername(name);
     }
-
-//    @Override
-//    public List<Author> getAuthorsByName(String name) {
-//        return authorRepository.findByUsername(name).collect(Collectors.toList());
-//    }
 
     @Override
     public void deleteAuthor(long id) {

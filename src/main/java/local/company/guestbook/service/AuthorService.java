@@ -3,6 +3,7 @@ package local.company.guestbook.service;
 import local.company.guestbook.model.Author;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service layer for Author repository.
@@ -13,11 +14,7 @@ public interface AuthorService {
 
     List<Author> getAuthors();
 
-    Author getAuthor(Long userId);
-
-    Author findAuthor(String name);
-
-//    List<Author> getAuthorsByName(String name);
+    Optional<Author> findAuthor(String name);
 
     void addAuthor(String username);
 
