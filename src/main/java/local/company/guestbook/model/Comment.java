@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
@@ -15,10 +16,12 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String text;
+    @NotNull
     private Instant created;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Author author;
 
 

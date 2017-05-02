@@ -14,5 +14,7 @@ public interface CommentService {
 
     List<Comment> getComments();
 
+    Comment addComment(Comment comment);
+
     Comment addRandomComment(Author author);
 }

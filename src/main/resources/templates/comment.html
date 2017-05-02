@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Guestbook comment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h2>Comment</h2>
+
+<form action="#" th:action="@{/comment/}" th:object="${comment}" method="post">
+    <table>
+        <tr>
+            <td>Comment:</td>
+            <td><input type="text" th:field="*{text}"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Comment"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

@@ -31,6 +31,11 @@ public class DefaultCommentService implements CommentService {
     }
 
     @Override
+    public Comment addComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
+
+    @Override
     public Comment addRandomComment(Author author) {
         Comment comment = new Comment();
         comment.setAuthor(author);

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,7 +59,8 @@ public class GuestbookController {
         List<Author> authors = authorService.getAuthors();
         model.addAttribute("users", authors);
 
-        List<Author> foundAuthors = authorService.getAuthorsByName("mary");
+        List<Author> foundAuthors = Collections.emptyList(); //authorService
+        // .getAuthorsByName("mary");
         model.addAttribute("foundUsers", foundAuthors);
 
         return "index";
@@ -130,6 +133,26 @@ public class GuestbookController {
 
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/comment/")
+    public String commentForm(Model model) {
+        model.addAttribute("comment", new Comment());
+
+        return "comment";
+    }
+
+    @PostMapping("/comment/")
+    public String commentSubmit(
+            @Valid @ModelAttribute("comment") Comment comment,
+            BindingResult result,
+            Principal principal
+    ) {
+        Author author = authorService.findAuthor(principal.getName());
+        comment.setAuthor(author);
+        commentService.addComment(comment);
+
+        return "redirect:/";
     }
 
     @ExceptionHandler(DataAccessException.class)

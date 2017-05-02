@@ -15,7 +15,9 @@ public interface AuthorService {
 
     Author getAuthor(Long userId);
 
-    List<Author> getAuthorsByName(String name);
+    Author findAuthor(String name);
+
+//    List<Author> getAuthorsByName(String name);
 
     void addAuthor(String username);
 
