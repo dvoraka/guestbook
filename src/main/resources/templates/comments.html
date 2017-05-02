@@ -11,7 +11,7 @@
 <ul th:each="comment : ${comments}">
     <li>
         <span th:text="${comment.text}"></span>
-        <span th:text="'- ' + ${comment.author.username}"></span>
+        <span th:text="'- ' + ${comment.author.name}"></span>
     </li>
 </ul>
 

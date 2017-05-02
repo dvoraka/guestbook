@@ -55,7 +55,7 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public Optional<Author> findAuthor(String name) {
-        return authorRepository.findByUsername(name);
+        return authorRepository.findByName(name);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class DefaultAuthorService implements AuthorService {
 
     private Author createUser(String username) {
         Author author = new Author();
-        author.setUsername(username);
+        author.setName(username);
         author.setCreated(Instant.now());
 
         return author;

@@ -22,7 +22,7 @@ public class Author {
     private Long id;
 
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
-    private String username;
+    private String name;
     private String password;
     private Instant created;
 
@@ -38,12 +38,12 @@ public class Author {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -81,7 +81,7 @@ public class Author {
 
         Author author = (Author) o;
 
-        if (username != null ? !username.equals(author.username) : author.username != null) {
+        if (name != null ? !name.equals(author.name) : author.name != null) {
             return false;
         }
         if (password != null ? !password.equals(author.password) : author.password != null) {
@@ -98,7 +98,7 @@ public class Author {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = username != null ? username.hashCode() : 0;
+        int result = name != null ? name.hashCode() : 0;
         result = prime * result + (password != null ? password.hashCode() : 0);
         result = prime * result + (created != null ? created.hashCode() : 0);
         result = prime * result + (comments != null ? comments.hashCode() : 0);
@@ -110,7 +110,7 @@ public class Author {
     public String toString() {
         return "Author {" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", created=" + created +
                 ", comments=" + comments +
