@@ -17,3 +17,4 @@ build/
 sample/
 *.log
 target/
+classes/
