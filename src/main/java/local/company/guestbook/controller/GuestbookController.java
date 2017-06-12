@@ -2,8 +2,10 @@ package local.company.guestbook.controller;
 
 import local.company.guestbook.model.Author;
 import local.company.guestbook.model.Comment;
+import local.company.guestbook.model.Vote;
 import local.company.guestbook.service.AuthorService;
 import local.company.guestbook.service.CommentService;
+import local.company.guestbook.service.DefaultVoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +34,20 @@ public class GuestbookController {
 
     private final CommentService commentService;
     private final AuthorService authorService;
+    private final DefaultVoteService voteService;
 
     private static final Logger log = LoggerFactory.getLogger(GuestbookController.class);
 
 
     @Autowired
-    public GuestbookController(CommentService commentService, AuthorService authorService) {
+    public GuestbookController(
+            CommentService commentService,
+            AuthorService authorService,
+            DefaultVoteService voteService
+    ) {
         this.commentService = commentService;
         this.authorService = authorService;
+        this.voteService = voteService;
     }
 
     /**
@@ -60,8 +68,10 @@ public class GuestbookController {
         List<Author> authors = authorService.getAuthors();
         model.addAttribute("users", authors);
 
-        List<Author> foundAuthors = Collections.emptyList(); //authorService
-        // .getAuthorsByName("mary");
+        List<Vote> votes = voteService.findAll();
+        model.addAttribute("votes", votes);
+
+        List<Author> foundAuthors = Collections.emptyList();
         model.addAttribute("foundUsers", foundAuthors);
 
         return "index";

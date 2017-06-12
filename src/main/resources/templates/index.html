@@ -34,5 +34,12 @@
 <p>Users: <span th:text="${counter}">0</span></p>
 <p>Found users: <span th:text="${foundUsers}">[]</span></p>
 
+<h2>List of all votes</h2>
+<ul th:each="vote : ${votes}">
+    <li>
+        <span th:text="${vote.id} + '(' + ${vote.author} + ')'"></span>
+    </li>
+</ul>
+
 </body>
 </html>

@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "COMMENT")
@@ -23,6 +25,9 @@ public class Comment {
 
     @ManyToOne(optional = false)
     private Author author;
+
+    @OneToMany(mappedBy = "comment")
+    private List<Vote> votes;
 
 
     public Long getId() {
@@ -55,6 +60,14 @@ public class Comment {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override
@@ -94,7 +107,8 @@ public class Comment {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", created=" + created +
-                ", user=" + author +
+                ", author=" + author.getName() +
+                ", votes=" + votes +
                 '}';
     }
 }

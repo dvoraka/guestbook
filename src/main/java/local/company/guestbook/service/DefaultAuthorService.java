@@ -18,9 +18,9 @@ import java.util.Optional;
 @Transactional
 public class DefaultAuthorService implements AuthorService {
 
-    private static final int RANDOM_USERNAME_LENGTH = 10;
-
     private final AuthorRepository authorRepository;
+
+    private static final int RANDOM_USERNAME_LENGTH = 10;
 
 
     @Autowired

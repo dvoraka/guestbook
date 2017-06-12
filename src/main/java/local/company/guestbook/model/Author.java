@@ -29,6 +29,9 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "author")
+    private List<Vote> votes = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -70,6 +73,14 @@ public class Author {
         this.comments = comments;
     }
 
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -108,12 +119,13 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author {" +
+        return "Author{" +
                 "id=" + id +
-                ", username='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", created=" + created +
                 ", comments=" + comments +
+                ", votes=" + votes +
                 '}';
     }
 }
