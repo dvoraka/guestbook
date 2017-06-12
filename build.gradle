@@ -49,13 +49,14 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     // Spring dev tools
     compile("org.springframework.boot:spring-boot-devtools")
-    // PostgreSQL
-    compile('org.postgresql:postgresql')
 
     // Testing
-    testCompile('org.codehaus.groovy:groovy-all')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.spockframework:spock-core')
+    testCompile('org.spockframework:spock-spring')
 
+    // PostgreSQL
+    runtime('org.postgresql:postgresql')
     // Embedded database
     runtime('org.apache.derby:derby')
 }
