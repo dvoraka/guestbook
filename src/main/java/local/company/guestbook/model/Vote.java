@@ -17,8 +17,6 @@ public class Vote {
     @GeneratedValue
     private Long id;
 
-    private boolean positive;
-
     @ManyToOne
     private Author author;
 
@@ -32,14 +30,6 @@ public class Vote {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public boolean isPositive() {
-        return positive;
-    }
-
-    public void setPositive(boolean positive) {
-        this.positive = positive;
     }
 
     public Author getAuthor() {
@@ -62,7 +52,6 @@ public class Vote {
     public String toString() {
         return "Vote{" +
                 "id=" + id +
-                ", positive=" + positive +
                 ", author=" + author.getName() +
                 ", comment=" + comment.getText() +
                 '}';

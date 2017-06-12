@@ -14,7 +14,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration
-@Ignore
+@Ignore("manual testing")
 class TestSpec extends Specification {
 
     @Autowired
@@ -25,9 +25,9 @@ class TestSpec extends Specification {
     DefaultVoteService voteService
 
 
-    def "test"() {
+    def "test configuration"() {
         expect:
-            println voteService.findAll()
+            true
     }
 
     def "generate data"() {
