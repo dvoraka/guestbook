@@ -20,7 +20,11 @@ public interface AuthorService {
 
     void addAuthor(Author author);
 
+    void addAuthors(Iterable<Author> authors);
+
     Author addRandomAuthor();
+
+    Author genRandomAuthor();
 
     void deleteAuthor(long id);
 }

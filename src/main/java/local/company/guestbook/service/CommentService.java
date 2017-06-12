@@ -17,4 +17,6 @@ public interface CommentService {
     Comment addComment(Comment comment);
 
     Comment addRandomComment(Author author);
+
+    Comment genRandomComment(Author author);
 }

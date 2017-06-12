@@ -22,10 +22,13 @@ public class DefaultAuthorService implements AuthorService {
 
     private static final int RANDOM_USERNAME_LENGTH = 10;
 
+    private final SecureRandom random;
+
 
     @Autowired
     public DefaultAuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
+        random = new SecureRandom();
     }
 
     @Override
@@ -40,7 +43,11 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public Author addRandomAuthor() {
-        SecureRandom random = new SecureRandom();
+        return authorRepository.save(genRandomAuthor());
+    }
+
+    @Override
+    public Author genRandomAuthor() {
         StringBuilder sb = new StringBuilder();
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
@@ -50,7 +57,7 @@ public class DefaultAuthorService implements AuthorService {
         }
         String randStr = sb.toString();
 
-        return authorRepository.save(createUser(randStr));
+        return createUser(randStr);
     }
 
     @Override
@@ -73,9 +80,15 @@ public class DefaultAuthorService implements AuthorService {
         authorRepository.save(author);
     }
 
+    @Override
+    public void addAuthors(Iterable<Author> authors) {
+        authorRepository.save(authors);
+    }
+
     private Author createUser(String username) {
         Author author = new Author();
         author.setName(username);
+        author.setPassword("");
         author.setCreated(Instant.now());
 
         return author;

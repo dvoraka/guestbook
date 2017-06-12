@@ -19,6 +19,10 @@ public class DefaultVoteService {
         this.voteRepository = voteRepository;
     }
 
+    public Vote save(Vote vote) {
+        return voteRepository.save(vote);
+    }
+
     public List<Vote> findAll() {
         return voteRepository.findAll();
     }

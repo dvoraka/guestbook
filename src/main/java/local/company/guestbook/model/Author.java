@@ -1,5 +1,6 @@
 package local.company.guestbook.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,8 +23,13 @@ public class Author {
     private Long id;
 
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private Instant created;
 
     @OneToMany(mappedBy = "author")
