@@ -15,6 +15,9 @@ Spring MVC study project.
  * Gradle
 
 ### Run application
+You need to set a proper configuration in **application.properties** for a DB.
+
+Then run:
 ```
 $ ./gradlew bootRun
 ```
