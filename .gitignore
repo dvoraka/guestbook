@@ -4,6 +4,7 @@ nbactions.xml
 
 # Idea
 .idea/
+*.iml
 
 # Eclipse
 .classpath
