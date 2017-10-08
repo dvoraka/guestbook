@@ -72,14 +72,14 @@ tasks.withType(JavaCompile) {
 }
 
 checkstyle {
-    toolVersion = '7.3'
+//    toolVersion = '7.3'
     sourceSets = [sourceSets.main]
 
     ignoreFailures = false
 }
 
 findbugs {
-    toolVersion = '3.0.1'
+//    toolVersion = '3.0.1'
     reportLevel = 'medium'
     sourceSets = [sourceSets.main]
 
@@ -94,18 +94,18 @@ tasks.withType(FindBugs) {
 }
 
 pmd {
-    toolVersion = '5.5.2'
+//    toolVersion = '5.5.2'
     sourceSets = [sourceSets.main]
 
     ignoreFailures = false
 }
 
 jacoco {
-    toolVersion = '0.7.8'
+//    toolVersion = '0.7.8'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0.1'
+    gradleVersion = '4.2.1'
 }
 
 task integrationTest(type: Test) {
