@@ -67,7 +67,7 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public void deleteAuthor(long id) {
-        authorRepository.delete(id);
+        authorRepository.deleteById(id);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public void addAuthors(Iterable<Author> authors) {
-        authorRepository.save(authors);
+        authorRepository.saveAll(authors);
     }
 
     private Author createUser(String username) {

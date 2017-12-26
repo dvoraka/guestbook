@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
+//apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
@@ -67,10 +67,14 @@ dependencies {
     // Spring dev tools
     compile("org.springframework.boot:spring-boot-devtools")
 
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+
     // Testing
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
-    testCompile('org.spockframework:spock-spring:q1.1-groovy-2.4')
+    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+    // Groovy version for test compilation
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.13'
 
     // PostgreSQL
     runtime('org.postgresql:postgresql')
@@ -94,12 +98,12 @@ checkstyle {
     ignoreFailures = false
 }
 
-findbugs {
-    reportLevel = 'medium'
-    sourceSets = [sourceSets.main]
-
-    ignoreFailures = false
-}
+//findbugs {
+//    reportLevel = 'medium'
+//    sourceSets = [sourceSets.main]
+//
+//    ignoreFailures = false
+//}
 
 tasks.withType(FindBugs) {
     reports {
