@@ -8,7 +8,6 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
-apply plugin: 'war'
 apply plugin: 'idea'
 
 sourceCompatibility = '1.8'
@@ -72,14 +71,12 @@ tasks.withType(JavaCompile) {
 }
 
 checkstyle {
-//    toolVersion = '7.3'
     sourceSets = [sourceSets.main]
 
     ignoreFailures = false
 }
 
 findbugs {
-//    toolVersion = '3.0.1'
     reportLevel = 'medium'
     sourceSets = [sourceSets.main]
 
@@ -94,7 +91,6 @@ tasks.withType(FindBugs) {
 }
 
 pmd {
-//    toolVersion = '5.5.2'
     sourceSets = [sourceSets.main]
 
     ignoreFailures = false
