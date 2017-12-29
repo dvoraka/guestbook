@@ -14,12 +14,12 @@ buildscript {
 
 plugins {
 //    id 'org.springframework.boot' version '1.5.9.RELEASE'
+    id "com.github.spotbugs" version "1.6.0"
 }
 
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
-//apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
@@ -98,14 +98,18 @@ checkstyle {
     ignoreFailures = false
 }
 
-//findbugs {
-//    reportLevel = 'medium'
-//    sourceSets = [sourceSets.main]
-//
-//    ignoreFailures = false
-//}
+spotbugs {
+    effort = 'max'
+    reportLevel = 'high'
 
-tasks.withType(FindBugs) {
+    sourceSets = [sourceSets.main]
+
+//    includeFilter = file("findbugs-exclude.xml")
+
+    ignoreFailures = false
+}
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
     reports {
         xml.enabled = false
         html.enabled = true
@@ -119,7 +123,6 @@ pmd {
 }
 
 jacoco {
-//    toolVersion = '0.7.8'
 }
 
 task wrapper(type: Wrapper) {
