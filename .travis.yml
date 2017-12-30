@@ -6,11 +6,10 @@ jdk:
   - openjdk8
 
 matrix:
+  include:
+    - jdk: oraclejdk8
+      install: ./gradlew help
+      script: ./gradlew help
   allow_failures:
-    include:
-      - jdk: oraclejdk8
-        install: ./gradlew help
-        script: ./gradlew help
-
     - jdk: oraclejdk8
     - jdk: openjdk8
