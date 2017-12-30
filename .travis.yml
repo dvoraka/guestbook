@@ -8,8 +8,9 @@ jdk:
 matrix:
   include:
     - jdk: oraclejdk8
-      install: ./gradlew help
-      script: ./gradlew help
+      install: ./gradlew -PprojectJavaVersion=1.8 assemble
+      script: ./gradlew -PprojectJavaVersion=1.8 check
+
   allow_failures:
     - jdk: oraclejdk8
     - jdk: openjdk8
