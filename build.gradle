@@ -67,7 +67,7 @@ dependencies {
     // Spring dev tools
     compile("org.springframework.boot:spring-boot-devtools")
 
-    compile('javax.xml.bind:jaxb-api:2.3.0')
+    runtime('javax.xml.bind:jaxb-api:2.3.0')
 
     // Testing
     testCompile('org.springframework.boot:spring-boot-starter-test')
