@@ -1,12 +1,8 @@
 language: java
 
-#jdk:
-#  - oraclejdk9
-
 matrix:
   include:
     - jdk: oraclejdk9
-    - jdk: openjdk9
 
     - jdk: oraclejdk8
       install: ./gradlew -PprojectJavaVersion=1.8 assemble
