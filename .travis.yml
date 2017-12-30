@@ -1,11 +1,17 @@
 language: java
 
-jdk:
-  - oraclejdk8
-  - oraclejdk9
-  - openjdk8
-
 matrix:
+  include:
+    - jdk: oraclejdk9
+
+    - jdk: oraclejdk8
+      install: ./gradlew -PprojectJavaVersion=1.8 assemble
+      script: ./gradlew -PprojectJavaVersion=1.8 check
+
+    - jdk: openjdk8
+      install: ./gradlew -PprojectJavaVersion=1.8 assemble
+      script: ./gradlew -PprojectJavaVersion=1.8 check
+
   allow_failures:
     - jdk: oraclejdk8
     - jdk: openjdk8
