@@ -8,4 +8,5 @@ jdk:
 matrix:
   allow_failures:
     - jdk: oraclejdk8
+      script: ./gradlew help
     - jdk: openjdk8
