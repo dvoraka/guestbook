@@ -27,7 +27,7 @@
 <ul th:each="user : ${users}">
     <li>
         <span th:text="${user.id} + '-' + ${user.name} + ' (created: ' + ${user.created} + ')'"></span>
-        <a th:href="@{'/delete-user/' + ${user.id}}">delete</a>
+        <a th:href="@{'/user/delete/' + ${user.id}}">delete</a>
     </li>
 </ul>
 

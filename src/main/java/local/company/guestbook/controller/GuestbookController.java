@@ -116,7 +116,7 @@ public class GuestbookController {
         return randomComment;
     }
 
-    @GetMapping("/delete-user/{userId}")
+    @GetMapping("/user/delete/{userId}")
     public String delUser(@PathVariable("userId") long id) {
         authorService.deleteAuthor(id);
 
