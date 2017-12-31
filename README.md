@@ -7,6 +7,7 @@ guestbook
 Spring MVC study project.
 
 ### Components
+ * Java 9
  * Spring Boot
  * Spring MVC
  * Thymeleaf
