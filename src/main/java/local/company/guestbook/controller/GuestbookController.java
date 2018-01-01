@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Guestbook controller.
@@ -74,13 +72,6 @@ public class GuestbookController {
         model.addAttribute("foundUsers", foundAuthors);
 
         return "index";
-    }
-
-    @GetMapping("/comments")
-    public String comments(Model model) {
-        model.addAttribute("comments", commentService.getComments());
-
-        return "comments";
     }
 
     /**
@@ -136,33 +127,6 @@ public class GuestbookController {
 
             return "redirect:/";
         }
-    }
-
-    @GetMapping("/comment/")
-    public String commentForm(Model model) {
-        model.addAttribute("comment", new Comment());
-
-        return "comment";
-    }
-
-    @PostMapping("/comment/")
-    public String commentSubmit(
-            @Valid @ModelAttribute("comment") Comment comment,
-            BindingResult result,
-            Principal principal
-    ) {
-        if (principal != null) {
-            Optional<Author> author = authorService.findAuthor(principal.getName());
-
-            if (author.isPresent()) {
-                comment.setAuthor(author.get());
-                comment.setCreated(Instant.now());
-
-                commentService.addComment(comment);
-            }
-        }
-
-        return "redirect:/";
     }
 
     @ExceptionHandler(DataAccessException.class)
