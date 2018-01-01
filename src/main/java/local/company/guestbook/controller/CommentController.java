@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.Instant;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/comment")
@@ -50,14 +49,13 @@ public class CommentController {
             Principal principal
     ) {
         if (principal != null) {
-            Optional<Author> author = authorService.findAuthor(principal.getName());
+            Author author = authorService.findAuthor(principal.getName())
+                    .orElse(authorService.addAuthor(principal.getName()));
 
-            if (author.isPresent()) {
-                comment.setAuthor(author.get());
-                comment.setCreated(Instant.now());
+            comment.setAuthor(author);
+            comment.setCreated(Instant.now());
 
-                commentService.addComment(comment);
-            }
+            commentService.addComment(comment);
         }
 
         return "redirect:/";

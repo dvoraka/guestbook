@@ -16,9 +16,9 @@ public interface AuthorService {
 
     Optional<Author> findAuthor(String name);
 
-    void addAuthor(String username);
+    Author addAuthor(String username);
 
-    void addAuthor(Author author);
+    Author addAuthor(Author author);
 
     void addAuthors(Iterable<Author> authors);
 
