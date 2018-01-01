@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -104,23 +103,16 @@ public class GuestbookController {
 
     private Author saveRandomAuthor() {
         Author randomAuthor = authorService.addRandomAuthor();
-        log.debug("Saved: {}", randomAuthor);
+        log.debug("Save author: {}", randomAuthor);
 
         return randomAuthor;
     }
 
     private Comment saveRandomComment(Author author) {
         Comment randomComment = commentService.addRandomComment(author);
-        log.debug("Saved: {}", randomComment);
+        log.debug("Save comment: {}", randomComment);
 
         return randomComment;
-    }
-
-    @GetMapping("/user/delete/{userId}")
-    public String delUser(@PathVariable("userId") long id) {
-        authorService.deleteAuthor(id);
-
-        return "redirect:/";
     }
 
     @GetMapping("/reg/")
