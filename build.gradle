@@ -65,7 +65,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     // Spring dev tools
-    compile("org.springframework.boot:spring-boot-devtools")
+    compile('org.springframework.boot:spring-boot-devtools')
 
     runtime('javax.xml.bind:jaxb-api:2.3.0')
 
@@ -78,8 +78,8 @@ dependencies {
 
     // PostgreSQL
     runtime('org.postgresql:postgresql')
-    // Embedded database
-    runtime('org.apache.derby:derby')
+    // H2
+    runtime('com.h2database:h2')
 }
 
 test {
