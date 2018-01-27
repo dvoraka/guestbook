@@ -8,8 +8,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "AUTHOR")
@@ -33,10 +33,15 @@ public class Author {
     private Instant created;
 
     @OneToMany(mappedBy = "author")
-    private List<Comment> comments = new ArrayList<>();
+    private Set<Comment> comments;
 
     @OneToMany(mappedBy = "author")
-    private List<Vote> votes = new ArrayList<>();
+    private Set<Vote> votes;
+
+    public Author() {
+        comments = new HashSet<>();
+        votes = new HashSet<>();
+    }
 
 
     public Long getId() {
@@ -71,19 +76,19 @@ public class Author {
         this.created = created;
     }
 
-    public List<Comment> getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 
-    public List<Vote> getVotes() {
+    public Set<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(List<Vote> votes) {
+    public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 
