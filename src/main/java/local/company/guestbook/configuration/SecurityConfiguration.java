@@ -27,11 +27,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/reg/**")
-                .access("hasRole('USER')")
+                .hasRole("USER")
                 .antMatchers("/comment/**")
-                .access("hasRole('USER')")
-                .anyRequest().permitAll()
+                .hasRole("USER")
+                .anyRequest()
+                .permitAll()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .and()
+                .httpBasic()
+                .disable();
     }
 }
