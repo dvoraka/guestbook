@@ -22,8 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
+    protected void configure(HttpSecurity security) throws Exception {
+        security
                 .authorizeRequests()
                 .antMatchers("/reg/**", "/comment/**")
                 .hasRole("USER")
