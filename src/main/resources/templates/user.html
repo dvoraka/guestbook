@@ -5,8 +5,8 @@
     <title>User</title>
 </head>
 <body>
-<div th:fragment="usertab">
-    user:
+<div th:fragment="usertab (username)">
+    user: <span th:text="${username}"></span>
 </div>
 </body>
 </html>
