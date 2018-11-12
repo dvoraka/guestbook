@@ -8,6 +8,7 @@
 
 <h1>Guestbook</h1>
 <div th:insert="~{user :: usertab}"></div>
+<span th:text="${user}"></span>
 <p>
     <a th:href="@{/add-rand-user/}">Generate new author</a>
 </p>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +52,13 @@ public class GuestbookController {
      * Index page.
      */
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
+
+        String username = "";
+        if (principal != null) {
+            username = principal.getName();
+        }
+        model.addAttribute("user", username);
 
         long count = authorService.count();
         model.addAttribute("counter", count);
