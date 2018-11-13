@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ public class Author {
     @Column(nullable = false)
     private String name;
 
+    @NotBlank
     @Column(nullable = false)
     private String password;
 
@@ -38,11 +40,11 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private Set<Vote> votes;
 
+
     public Author() {
         comments = new HashSet<>();
         votes = new HashSet<>();
     }
-
 
     public Long getId() {
         return id;

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,7 @@ public class GuestbookController {
     private final CommentService commentService;
     private final AuthorService authorService;
     private final DefaultVoteService voteService;
+    private final PasswordEncoder passwordEncoder;
 
     private static final Logger log = LoggerFactory.getLogger(GuestbookController.class);
 
@@ -41,11 +43,13 @@ public class GuestbookController {
     public GuestbookController(
             CommentService commentService,
             AuthorService authorService,
-            DefaultVoteService voteService
+            DefaultVoteService voteService,
+            PasswordEncoder passwordEncoder
     ) {
         this.commentService = commentService;
         this.authorService = authorService;
         this.voteService = voteService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -126,10 +130,12 @@ public class GuestbookController {
             BindingResult result
     ) {
         if (result.hasErrors()) {
-
             return "register";
         } else {
             author.setCreated(Instant.now());
+            author.setPassword(passwordEncoder
+                    .encode(author.getPassword()));
+
             authorService.addAuthor(author);
 
             return "redirect:/";

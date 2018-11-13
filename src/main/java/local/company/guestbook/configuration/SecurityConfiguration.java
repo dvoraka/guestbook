@@ -1,5 +1,6 @@
 package local.company.guestbook.configuration;
 
+import local.company.guestbook.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user")
                 .password(passwordEncoder().encode("user"))
-                .roles("USER");
+                .roles("ADMIN");
+
+        auth
+                .userDetailsService(customUserDetailsService());
     }
 
     @Override
@@ -42,6 +46,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic()
                 .disable();
+    }
+
+    @Bean
+    public CustomUserDetailsService customUserDetailsService() {
+        return new CustomUserDetailsService();
     }
 
     @Bean
