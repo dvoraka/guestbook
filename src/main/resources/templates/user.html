@@ -9,6 +9,7 @@
     <span th:text="'user: ' + ${username}">user:</span>
     <div>
         <a th:href="@{/logout}" th:if="${not #strings.isEmpty(username)}">logout</a>
+        <a th:href="@{/login}" th:if="${#strings.isEmpty(username)}">login</a>
     </div>
 </div>
 </body>
