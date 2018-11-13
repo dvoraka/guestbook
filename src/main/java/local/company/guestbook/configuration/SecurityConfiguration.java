@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 //TODO: improve
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
                 .and()
                 .httpBasic()
                 .disable();
