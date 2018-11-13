@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
     <title>Guestbook index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
-<h1>Guestbook</h1>
+<div class="greeting">Guestbook</div>
 <div th:replace="~{user :: usertab (username=${user})}"></div>
 <p>
     <a th:href="@{/add-rand-user/}">Generate new author</a>

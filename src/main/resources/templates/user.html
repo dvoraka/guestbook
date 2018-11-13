@@ -5,7 +5,7 @@
     <title>User</title>
 </head>
 <body>
-<div th:fragment="usertab (username)">
+<div class="usertab" th:fragment="usertab (username)">
     <span th:text="'user: ' + ${username}">user:</span>
     <div>
         <a th:href="@{/logout}" th:if="${not #strings.isEmpty(username)}">logout</a>
