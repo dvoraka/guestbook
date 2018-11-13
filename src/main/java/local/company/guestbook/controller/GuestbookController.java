@@ -69,7 +69,7 @@ public class GuestbookController {
         List<Comment> comments = commentService.getComments();
         model.addAttribute("comments", comments);
 
-        List<Author> authors = authorService.getAuthors();
+        List<Author> authors = authorService.listAuthors();
         model.addAttribute("users", authors);
 
         List<Vote> votes = voteService.findAll();

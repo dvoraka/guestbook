@@ -37,7 +37,7 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public List<Author> getAuthors() {
+    public List<Author> listAuthors() {
         return authorRepository.findAll();
     }
 
@@ -71,6 +71,12 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
+    public void deleteAuthor(String username) {
+        authorRepository.findByName(username)
+                .ifPresent(authorRepository::delete);
+    }
+
+    @Override
     public Author addAuthor(String username) {
         return authorRepository.save(createUser(username));
     }
@@ -78,11 +84,6 @@ public class DefaultAuthorService implements AuthorService {
     @Override
     public Author addAuthor(Author author) {
         return authorRepository.save(author);
-    }
-
-    @Override
-    public void addAuthors(Iterable<Author> authors) {
-        authorRepository.saveAll(authors);
     }
 
     private Author createUser(String username) {

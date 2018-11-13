@@ -12,19 +12,20 @@ public interface AuthorService {
 
     long count();
 
-    List<Author> getAuthors();
+    List<Author> listAuthors();
 
     Optional<Author> findAuthor(String name);
 
+    @Deprecated
     Author addAuthor(String username);
 
     Author addAuthor(Author author);
-
-    void addAuthors(Iterable<Author> authors);
 
     Author addRandomAuthor();
 
     Author genRandomAuthor();
 
     void deleteAuthor(long id);
+
+    void deleteAuthor(String username);
 }
