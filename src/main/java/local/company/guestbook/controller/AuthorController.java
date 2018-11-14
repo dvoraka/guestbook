@@ -5,8 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,14 +19,5 @@ public class AuthorController {
     @Autowired
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
-    }
-
-    @GetMapping("/delete/{authorId}")
-    public String delAuthor(@PathVariable("authorId") long id) {
-        log.debug("Delete author: {}", id);
-
-        authorService.deleteAuthor(id);
-
-        return "redirect:/";
     }
 }
