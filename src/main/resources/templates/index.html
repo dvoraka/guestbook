@@ -10,9 +10,6 @@
 <div class="greeting">Guestbook</div>
 <div th:replace="~{user :: usertab (username=${user})}"></div>
 <p>
-    <a th:href="@{/add-rand-user/}">Generate new author</a>
-</p>
-<p>
     <a th:href="@{/add-rand-comment/}">Generate new comment</a>
 </p>
 <p>

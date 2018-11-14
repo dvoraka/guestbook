@@ -85,16 +85,6 @@ public class GuestbookController {
         return "index";
     }
 
-    /**
-     * Adds a random user to the DB and redirects to /.
-     */
-    @GetMapping("/add-rand-user/")
-    public String addRandomUser() {
-        saveRandomAuthor();
-
-        return "redirect:/";
-    }
-
     @GetMapping("/add-rand-comment/")
     public String addRandomComment() {
         Author randomAuthor = saveRandomAuthor();
