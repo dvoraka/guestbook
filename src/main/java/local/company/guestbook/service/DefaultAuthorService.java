@@ -77,11 +77,6 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public Author addAuthor(String username) {
-        return authorRepository.save(createUser(username));
-    }
-
-    @Override
     public Author addAuthor(Author author) {
         return authorRepository.save(author);
     }

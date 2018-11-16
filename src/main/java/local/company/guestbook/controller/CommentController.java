@@ -50,7 +50,7 @@ public class CommentController {
     ) {
         if (principal != null) {
             Author author = authorService.findAuthor(principal.getName())
-                    .orElse(authorService.addAuthor(principal.getName()));
+                    .orElseThrow(RuntimeException::new); //TODO
 
             comment.setAuthor(author);
             comment.setCreated(Instant.now());

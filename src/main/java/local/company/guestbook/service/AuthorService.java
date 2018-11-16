@@ -16,9 +16,6 @@ public interface AuthorService {
 
     Optional<Author> findAuthor(String name);
 
-    @Deprecated
-    Author addAuthor(String username);
-
     Author addAuthor(Author author);
 
     Author addRandomAuthor();
