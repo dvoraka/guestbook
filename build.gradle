@@ -53,6 +53,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     // Spring dev tools
     compile('org.springframework.boot:spring-boot-devtools')
+    // Lombok
+    compile('org.projectlombok:lombok')
 
     runtime('javax.xml.bind:jaxb-api:2.3.0')
 
