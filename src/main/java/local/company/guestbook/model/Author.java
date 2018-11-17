@@ -12,6 +12,9 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Author entity.
+ */
 @Entity
 @Table(name = "AUTHOR")
 public class Author {

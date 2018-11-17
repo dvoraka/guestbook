@@ -11,25 +11,25 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * Comment entity.
+ * Topic entity.
  */
 @Entity
-@Table(name = "COMMENT")
-public class Comment {
+@Table(name = "TOPIC")
+public class Topic {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @NotNull
-    private String text;
+    private String name;
     @NotNull
     private Instant created;
 
     @ManyToOne(optional = false)
     private Author author;
 
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "topic")
     private List<Vote> votes;
 
 
@@ -41,12 +41,12 @@ public class Comment {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getName() {
+        return name;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Instant getCreated() {
@@ -82,9 +82,9 @@ public class Comment {
             return false;
         }
 
-        Comment comment = (Comment) o;
+        Topic comment = (Topic) o;
 
-        if (text != null ? !text.equals(comment.text) : comment.text != null) {
+        if (name != null ? !name.equals(comment.name) : comment.name != null) {
             return false;
         }
         if (created != null ? !created.equals(comment.created) : comment.created != null) {
@@ -97,7 +97,7 @@ public class Comment {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = text != null ? text.hashCode() : 0;
+        int result = name != null ? name.hashCode() : 0;
         result = prime * result + (created != null ? created.hashCode() : 0);
         result = prime * result + (author != null ? author.hashCode() : 0);
 
@@ -108,7 +108,7 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", text='" + name + '\'' +
                 ", created=" + created +
                 ", author=" + author.getName() +
                 ", votes=" + votes +
