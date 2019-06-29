@@ -115,7 +115,7 @@ jacoco {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.10.2'
+    gradleVersion = '5.5'
 }
 
 task integrationTest(type: Test) {

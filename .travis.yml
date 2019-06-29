@@ -6,14 +6,9 @@ matrix:
       install: ./gradlew -PprojectJavaVersion=1.9 assemble
       script: ./gradlew -PprojectJavaVersion=1.9 check
 
-    - jdk: oraclejdk8
-      install: ./gradlew -PprojectJavaVersion=1.8 assemble
-      script: ./gradlew -PprojectJavaVersion=1.8 check
-
     - jdk: openjdk8
       install: ./gradlew -PprojectJavaVersion=1.8 assemble
       script: ./gradlew -PprojectJavaVersion=1.8 check
 
   allow_failures:
-    - jdk: oraclejdk8
     - jdk: openjdk8
