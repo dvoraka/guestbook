@@ -1,8 +1,6 @@
 package local.company.guestbook.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +14,7 @@ import java.util.List;
 /**
  * Topic group entity.
  */
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table(name = "TOPIC_GROUP")
 public class TopicGroup {
