@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * Topic entity.
+ * Topic entity. The topic is logically part of a {@link TopicGroup}.
  */
 @Data
 @Entity

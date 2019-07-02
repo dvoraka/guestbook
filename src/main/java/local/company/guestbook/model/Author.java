@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Author entity.
+ * Author entity for authors.
  */
 @Data
 @Entity

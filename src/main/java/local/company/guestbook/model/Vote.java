@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Vote entity.
+ * Vote entity. For a {@link Topic} and {@link Comment} voting.
  */
 @Data
 @Entity
