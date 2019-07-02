@@ -1,5 +1,7 @@
 package local.company.guestbook.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 /**
  * Vote entity.
  */
+@Data
 @Entity
 @Table(name = "VOTE")
 public class Vote {
@@ -22,38 +25,4 @@ public class Vote {
 
     @ManyToOne
     private Comment comment;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
-
-    @Override
-    public String toString() {
-        return "Vote{" +
-                "id=" + id +
-                ", author=" + author.getName() +
-                ", comment=" + comment.getText() +
-                '}';
-    }
 }
