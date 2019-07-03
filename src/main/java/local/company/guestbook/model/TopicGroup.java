@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Topic group entity.
@@ -29,5 +29,5 @@ public class TopicGroup {
     private Instant created;
 
     @OneToMany(mappedBy = "topicGroup")
-    private List<Topic> topics;
+    private Set<Topic> topics;
 }

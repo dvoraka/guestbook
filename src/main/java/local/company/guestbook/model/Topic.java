@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Topic entity. The topic is logically part of a {@link TopicGroup}.
@@ -32,7 +32,7 @@ public class Topic {
     private Author author;
 
     @OneToMany
-    private List<Vote> votes;
+    private Set<Vote> votes;
 
     @ManyToOne
     private TopicGroup topicGroup;

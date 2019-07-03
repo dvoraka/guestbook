@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Comment entity.
@@ -33,5 +33,5 @@ public class Comment {
     private Author author;
 
     @OneToMany(mappedBy = "comment")
-    private List<Vote> votes;
+    private Set<Vote> votes;
 }
